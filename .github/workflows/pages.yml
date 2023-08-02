@@ -1,10 +1,74 @@
+on: [push]
+name: Rebuild Website
+
 jobs:
   build:
+    runs-on: ubuntu-latest
+  
     steps:
-      - name: "Build"
+      - uses: actions/checkout@master
+        with:
+          path: './source'
+          
+      - name: Setup pandoc
+        uses: nikeee/setup-pandoc@v1
+          
+      - name: Install dependencies
+        run: npm install
+          
+      - name: Setup Build Directory
         run: |
-          echo "hello world"
-      
+          mkdir ./build
+          
+      - name: Copy static resources
+        run: |
+          cp -r ./source/static ./build/static
+          
+      - name: Compile all SPAs
+        run: |
+          source_base="$PWD/source"
+          destination_base="$PWD/build"
+          
+          convert_path() {
+            local source_path="$1"
+            local relative_path="${source_path#$source_base}"  # Remove the source base
+            local destination_path="$destination_base$relative_path"
+
+            # Replace ".page.tsx" extension with ".html"
+            destination_path="${destination_path%.page.tsx}.html"
+
+            echo "$destination_path"
+          } 
+          
+          find $PWD/source -iname *.page.tsx 2> /dev/null | while read -r line; do
+            npx esbuild $line --outdir=$PWD/build/ --bundle --sourcemap --format=esm --platform=node
+          done
+          
+      - name: Convert all the shite
+        run: |
+          source_base="$PWD/source"
+          destination_base="$PWD/build"
+          
+          convert_path() {
+            local source_path="$1"
+            local relative_path="${source_path#$source_base}"  # Remove the source base
+            local destination_path="$destination_base$relative_path"
+
+            # Replace ".docx" extension with ".html"
+            destination_path="${destination_path%.docx}.html"
+
+            echo "$destination_path"
+          }          
+          
+          find $source_base -iname *.docx 2> /dev/null | while read -r line; do 
+            destination_file=$(convert_path "$line")
+            cat $line | pandoc --from docx --to html --embed-resources --reference-doc ./reference.docx --section-divs > $destination_file;
+            echo $line => $destination_file
+          done
+          
+      - name: Check for documents
+        run: ls -lhR
+          
   deploy:
     needs: build
 
@@ -21,3 +85,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+

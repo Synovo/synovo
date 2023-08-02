@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "build/lib",
+        "outDir": "build/ts",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "lib": ["dom", "ESNext"],
+        "noImplicitAny": false,
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "strict": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "#ssr",
+        "baseUrl": "./",
+        "paths": {
+            "#ssr": ["ssr.ts"],
+            "#ssr/jsx-runtime": ["ssr.ts"],
+            "#ssr/jsx-dev-runtime": ["ssr.ts"],
+        }
+    },
+    "exclude": [
+        "build",
+        "www/public/**/*",
+    ]
+}
