@@ -54,3 +54,5 @@ for i in args.static:
             if os.path.exists(dst_file):
                 os.remove(dst_file)
             shutil.copy(src_file, dst_dir)
+
+print("Rebuilt")

@@ -15,4 +15,4 @@ subprocess.run(['pandoc', '--from', 'docx', '--to', 'html', '--embed-resources',
 os.makedirs(pathlib.Path(sys.argv[2]).parent, exist_ok=True)
 
 with open(sys.argv[2], 'w+') as out:
-    out.write(template(tmp_path))
+    out.write(template(tmp_path, 'article'))

@@ -1,9 +1,12 @@
 import os
 import template_utils
 
-def template(file):
+def template(file, wrapper):
     with open(file, 'r') as html:
-        data = html.read()
+        if isinstance(wrapper, str):
+            data = "<{tag}>{body}</{tag}>".format(tag=wrapper, body=html.read())
+        else:
+            data = html.read()
 
         with open(os.path.abspath('./template.html'), 'r') as file:
             template = file.read()
@@ -34,7 +37,8 @@ def template(file):
             template = template[:block] + template[end + 3:]
 
         html.close()
+        
         return template
-
+             
 def escape(text):
     return text.replace('<', '&lt;').replace('>', '&gt;')
