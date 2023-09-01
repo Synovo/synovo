@@ -38,7 +38,7 @@ for i in args.pages:
                     continue
 
                 out = os.path.abspath(os.path.join(args.out, lang, Path(path).relative_to(os.path.abspath(i)).parent, '.'.join(split[:-2] + ['html'])))
-                subprocess.run([os.path.abspath(script[1]), path, out])
+                subprocess.run([os.path.abspath(script[1]), '--source', path, '--out', out, '--build', os.path.abspath(args.out)])
 
 for i in args.static:
     root_src_dir = os.path.abspath(i[0])
