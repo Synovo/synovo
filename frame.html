@@ -1,9 +1,8 @@
 <section id="root">
-	
 	<section id="nav">
 		<div id="options">
-			<a href="#" class="arrow-left-s-fill"></a>
-			<a href="#" class="ri-global-fil"></a>
+			<div id="menu-collapse" class="ri-arrow-left-s-fill"></div>
+			<a href="<?py(('/de' if final_path.startswith('/en') else '/en') + final_path[3:])?>" class="ri-global-line"></a>
 		</div>
 		<div id="overview">
 			<div id="logo">
@@ -35,3 +34,11 @@
 	
 	<?py(include('./footer.html'))?>
 </section>
+
+<script>
+	window.addEventListener('load', function() {
+		document.querySelector('#menu-collapse').addEventListener('click', function() {
+			document.querySelector('#nav').classList.toggle('collapsed');
+		});
+	});
+</script>

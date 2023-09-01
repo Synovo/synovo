@@ -83,9 +83,31 @@ body {
     opacity: 45%;
     
     transition-duration: 0.4s;
-    transition-property: opacity background;
+    transition-property: opacity, background;
     
     filter: brightness(90%);
+}
+
+#nav.collapsed {
+/*     transform: translateX(calc(0 - 100% - 36px)); */
+}
+
+@keyframes appearLeft {
+    0% {
+        top: var(--dim-layout-small);
+        left: calc(0 - var(--dim-layout-small));
+    }
+    
+    100% {
+        top: var(--dim-layout-small);
+        left: calc(0 + var(--dim-layout-small));
+    }
+}
+
+#nav.collapsed #menu-collapse {
+    position: fixed;
+    animation: appearLeft 0.3s;
+    animation-fill-mode: forwards;
 }
 
 #nav:hover {
@@ -93,18 +115,12 @@ body {
     background: var(--colour-black-dark);
 }
 
-#nav div#options {
-    grid-area: header;
-    display: flex;
-}
-
 #nav div#overview {
     position: sticky;
     grid-area: overview;
 }
 
-#nav div#socials {
-    grid-area: socials;
+#nav div#socials, #nav div#options {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,9 +132,17 @@ body {
     text-decoration: none;
 }
 
-#nav div#socials a {
+#nav :is(div#socials, div#options) a {
     text-decoration: none;
+    transition: filter 0.3s;
 }
+
+#nav :is(div#socials, div#options) a:hover {
+    filter: brightness(150%);
+}
+
+#nav div#socials { grid-area: socials; }
+#nav div#options { grid-area: header; }
 
 #nav #logo {
     display: flex;
