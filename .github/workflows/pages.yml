@@ -22,7 +22,7 @@ jobs:
           find build/* | xargs rm -rf
 
       - name: Build
-        run: python3 build.py
+        run: python3 build.py --language de
 
       - name: Upload
         uses: actions/upload-pages-artifact@v2
