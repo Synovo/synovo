@@ -1,7 +1,7 @@
 import os
 import template_utils
 
-def template(file, wrapper):
+def template(file, wrapper, glob = {}):
     with open(file, 'r') as html:
         if isinstance(wrapper, str):
             data = "<{tag}>{body}</{tag}>".format(tag=wrapper, body=html.read())
@@ -20,7 +20,8 @@ def template(file, wrapper):
 
             template = template[:block] + str(eval(python, { k: getattr(template_utils, k) for k in dir(template_utils) if not k.startswith('_') }, {
                 'file': file,
-                'body': data
+                'body': data,
+                'glob': glob
             })) + template[end + 3:]
 
         while '<?py{' in template:
@@ -31,7 +32,8 @@ def template(file, wrapper):
 
             exec(python, { k: getattr(template_utils, k) for k in dir(template_utils) if not k.startswith('_') }, {
                 'file': file,
-                'body': data
+                'body': data,
+                'glob': glob
             })
 
             template = template[:block] + template[end + 3:]

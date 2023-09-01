@@ -1,24 +1,37 @@
 <section id="root">
 	
 	<section id="nav">
+		<div id="options">
+			<a href="#" class="arrow-left-s-fill"></a>
+			<a href="#" class="ri-global-fil"></a>
+		</div>
 		<div id="overview">
 			<div id="logo">
 				<img src="https://2.gravatar.com/avatar/4ed905988b3abfdb0bbe62feac90f3b9" />
 			</div>
 			<nav id="main">
-				<a href="#" class="button">Home</a>
-				<a href="#" class="button">Projects</a>
+				<a href="#" class="nav-link">Home</a>
+				<a href="#" class="nav-link">Projects</a>
 				
 				<div class="indented">
-					<a href="#" class="button">Web and Cloud</a>
-					<a href="#" class="button">OS and Machines</a>
+					<a href="#" class="nav-link">Web and Cloud</a>
+					<a href="#" class="nav-link">OS and Machines</a>
 				</div>
 				
 			</nav>
+		</div>
+			
+		<div id="socials">
+			<a href="https://github.com/J-Cake" class="ri-github-fill"></a>
+			<a href="https://gitlab.redox-os.org/JCake" class="ri-gitlab-fill"></a>
+			<a class="icon"></a>
 		</div>
 	</section>
 	
 	<section id="content">
 		<?py(body)?>
+
 	</section>
+	
+	<?py(include('./footer.html'))?>
 </section>

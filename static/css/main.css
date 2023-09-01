@@ -1,0 +1,163 @@
+@import url('./theme.css');
+@import url('./widgets.css');
+@import url('./typography.css');
+
+*, :root {
+    margin: 0;
+    padding: 0;
+    
+    position: relative;
+    
+    font-family: 'Raleway', sans-serif;
+    
+    color: var(--colour-foreground);
+    
+    box-sizing: border-box;
+    
+    --box-shadow-tiny: 0 0 2px rgba(55, 55, 55, 15%);
+}
+
+:root {
+    background: var(--colour-background);
+}
+
+body {
+    background: url('/static/img/tübingen.jpg');
+    background: url('https://bing.biturl.top/?resolution=1920&image=random&format=image');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#root {
+    min-width: 100%;
+    min-height: 100vh;
+    
+    display: grid;
+    
+    background-color: rgba(0, 0, 0, 10%);
+    
+    grid-template-rows: var(--dim-element-large) auto var(--dim-element-small) auto;
+    grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
+    
+    grid-template-areas: 'left_padding header right-padding' 'left_padding content right_paddng' 'left_padding content right_padding' 'footer footer footer';
+}
+
+#root #content {
+    grid-area: content;
+    backdrop-filter: blur(128px) brightness(45%);
+    padding: var(--dim-layout-large);
+    margin: var(--dim-layout-large);
+    border-radius: var(--dim-layout-medium);
+    border: 1px solid var(--colour-black);
+    
+    overflow-x: hidden;
+}
+
+#root #footer {
+    grid-area: footer;
+    
+    background: var(--colour-background);
+    
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+    
+    grid-template-areas: 'left copyright right';    
+    padding: var(--dim-layout-large);
+}
+
+#footer #copyright {
+    grid-area: copyright;
+}
+
+#nav {
+    grid-area: left_padding;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: subgrid;
+    
+    grid-template-areas: 'header' 'overview' 'socials';
+    
+    background: var(--colour-background);
+    opacity: 45%;
+    
+    transition-duration: 0.4s;
+    transition-property: opacity background;
+    
+    filter: brightness(90%);
+}
+
+#nav:hover {
+    opacity: 95%;
+    background: var(--colour-black-dark);
+}
+
+#nav div#options {
+    grid-area: header;
+    display: flex;
+}
+
+#nav div#overview {
+    position: sticky;
+    grid-area: overview;
+}
+
+#nav div#socials {
+    grid-area: socials;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    gap: var(--dim-layout-medium);
+
+    font-size: var(--dim-font-gigantic);
+    
+    text-decoration: none;
+}
+
+#nav div#socials a {
+    text-decoration: none;
+}
+
+#nav #logo {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: var(--nav-item-size);
+    
+}
+
+#nav #logo img {
+    border-radius: 512px;
+}
+
+#nav nav#main {
+    display: grid;
+    grid-auto-rows: var(--nav-item-size);
+    padding: var(--dim-layout-medium);
+}
+
+#nav nav#main .indented {
+    padding-left: var(--nav-item-size);
+    
+    display: grid;
+    grid-auto-rows: var(--nav-item-size);
+}
+
+#nav a.nav-link {
+    text-decoration: none;
+    text-align: left;
+    font-weight: bold;
+    font-size: var(--dim-font-normal);
+    line-height: var(--nav-item-size);
+
+    color: var(--colour-foreground);
+    border-radius: 4px;
+    padding-left: 4px;
+    transition: padding-left 0.2s;
+}
+
+#nav a.nav-link:hover {
+    padding-left: var(--dim-layout-large);
+}

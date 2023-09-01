@@ -1,0 +1,74 @@
+:root * { /* Colours */
+    --colour-white-light: #eaeaea;
+    --colour-white: #dfdfdf;
+    --colour-white-dark: #d5d5d5;
+    
+    --colour-grey-light: #E2e6ea;
+    --colour-grey: #Dadde2;
+    --colour-grey-dark: #C4c7c9;
+    
+    --colour-black-light: #616671;
+    --colour-black: #2e3136;
+    --colour-black-dark: #272727;
+    
+    --colour-blue-light: #2386bc;
+    --colour-blue: #0d7a8b;
+    --colour-blue-dark: #0754d0;
+    
+    --colour-green-light: #48940a;
+    --colour-green: #1a9641;
+    --colour-green-dark: #48940a;
+    
+    --colour-yellow-light: #ffec1e;
+    --colour-yellow: #ebd61c;
+    --colour-yellow-dark: #cb9d13;
+    
+    --colour-red-light: #ff4517;
+    --colour-red: #ff2922;
+    --colour-red-dark: #b3260d;
+}
+
+:root * { /* Sizes */
+    --dim-layout-tiny: 3px;
+    --dim-layout-small: 4px;
+    --dim-layout-medium: 12px;
+    --dim-layout-large: 16px;
+    --dim-layout-huge: 24px;
+    
+    --dim-element-tiny: 32px;
+    --dim-element-small: 64px;
+    --dim-element-medium: 128px;
+    --dim-element-large: 240px;
+    --dim-element-huge: 366px;
+    --dim-element-gigantic: 465px;
+    
+    --dim-font-small: 9pt;
+    --dim-font-label: 10pt;
+    --dim-font-standard: 11pt;
+    --dim-font-medium: 12pt;
+    --dim-font-large: 14pt;
+    --dim-font-huge: 16pt;
+    --dim-font-gigantic: 20pt;
+}
+
+/* Theme */
+:root * {
+    --nav-indent-size: var(--dim-layout-large);
+    --nav-item-size: var(--dim-element-tiny);
+}
+    
+@media screen and (prefers-color-scheme: light) or (prefers-color-scheme: unset) {
+    :root * {
+        --colour-primary: var(--colour-blue);
+        --colour-foreground: var(--colour-black);
+        --colour-background: var(--colour-white-light);
+    }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root * {
+        --colour-primary: var(--colour-blue-light);
+        --colour-foreground: var(--colour-grey-dark);
+        --colour-background: var(--colour-black);
+    }
+}
