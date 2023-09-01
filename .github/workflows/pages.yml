@@ -16,6 +16,10 @@ jobs:
       - name: Setup Build Directory
         run: |
           mkdir -p ./build
+    
+      - name: Clear build directory
+        run: |
+          find build/* | xargs rm -rf
 
       - name: Build
         run: python3 build.py
