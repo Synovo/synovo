@@ -26,13 +26,13 @@ jobs:
       - name: Build
         run: python3 build.py --language de
         
-      - name: Symlink english files
+      - name: Redirect english files
         run: |
-          ls build/en | xargs -I {} ln -s build/en/{} build/
+          ls build/en | xargs -I {} ./redirect.py /en/{} > ./build/{}
           
       - name: Bundle
         run: |
-          tar --directory build -cvf ./artifact.tar --exclude=.git --exclude=.github .
+          tar --dereference --hard-dereference --directory build -cvf ./artifact.tar --exclude=.git --exclude=.github .
 
       - name: Upload
         uses: actions/upload-artifact@v3
