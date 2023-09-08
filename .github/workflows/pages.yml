@@ -32,7 +32,7 @@ jobs:
           
       - name: Bundle
         run: |
-          tar --directory ./build -cvf ./artifact.tar --exclude=.git --exclude=.github
+          tar --directory build -cvf ./artifact.tar --exclude=.git --exclude=.github .
 
       - name: Upload
         uses: actions/upload-artifact@v3
