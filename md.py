@@ -1,15 +1,11 @@
 #!/usr/bin/python3
 
-import subprocess
-import tempfile
-import argparse
-import pathlib
 import sys
-import os
+import argparse
+from markdown_it import MarkdownIt
 
-from template import template_file
+from template import template
 
-tmp_fd, tmp_path = tempfile.mkstemp()
 
 parser = argparse.ArgumentParser(description="DocX Filetype Support")
 
@@ -19,12 +15,16 @@ parser.add_argument('--out', metavar="out", help="The complete path of the final
                     
 args = parser.parse_args(sys.argv[1:])
 
-subprocess.run(['pandoc', args.source, '--from', 'docx', '--to', 'html', '--embed-resources', '--reference-doc', './reference.docx', '--section-divs'], stdout=tmp_fd)
+print(args)
 
-os.makedirs(pathlib.Path(args.out).parent, exist_ok=True)
+md = (
+    MarkdownIt('commonmark', {'breaks':True,'html':True})
+    .enable('table')
+)
 
-with open(args.out, 'w+') as out:
-    out.write(template_file(tmp_path, 'article', { 
+
+with open(args.source, 'r') as source, open(args.out, 'w+') as dest:
+    dest.write(template(md.render(source.read()), 'article', { 
         'out': args.out,
         'source': args.source,
         'build': args.build

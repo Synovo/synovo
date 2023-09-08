@@ -9,7 +9,8 @@ import subprocess
 
 
 default_generator = [
-    ["docx", "./docx.py"]
+    ["docx", "./docx.py"],
+    ["md", "./md.py"]
 ]
 
 
