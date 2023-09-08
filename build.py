@@ -24,6 +24,8 @@ parser.add_argument("--generator", "-g", nargs=2, metavar=("extension", "script"
 
 args = parser.parse_args(sys.argv[1:])
 
+codes = []
+
 for i in args.pages:
     for root, dirs, files in os.walk(os.path.abspath(i)):
         for file, path in [(file, os.path.join(root, file)) for file in files]:
@@ -39,7 +41,8 @@ for i in args.pages:
                     continue
 
                 out = os.path.abspath(os.path.join(args.out, lang, Path(path).relative_to(os.path.abspath(i)).parent, '.'.join(split[:-2] + ['html'])))
-                subprocess.run([os.path.abspath(script[1]), '--source', path, '--out', out, '--build', os.path.abspath(args.out)])
+                proc = subprocess.run([os.path.abspath(script[1]), '--source', path, '--out', out, '--build', os.path.abspath(args.out)])
+                codes.append(proc.returncode)
 
 for i in args.static:
     root_src_dir = os.path.abspath(i[0])
@@ -56,4 +59,9 @@ for i in args.static:
                 os.remove(dst_file)
             shutil.copy(src_file, dst_dir)
 
-print("Rebuilt")
+
+if len([i for i in codes if not i == 0]):
+    print("A process didn't exist properly")
+    sys.exit(1)
+else:
+    print("Rebuilt")

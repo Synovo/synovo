@@ -18,7 +18,7 @@ args = parser.parse_args(sys.argv[1:])
 print(args)
 
 md = (
-    MarkdownIt('commonmark', {'breaks':True,'html':True})
+    MarkdownIt('commonmark', { 'breaks': True, 'html': True })
     .enable('table')
 )
 
