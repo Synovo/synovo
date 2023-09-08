@@ -29,11 +29,18 @@ jobs:
       - name: Symlink english files
         run: |
           ls build/en | xargs -I {} ln -s build/en/{} build/
+          
+      - name: Bundle
+        run: |
+          tar --directory ./build -cvf ./artifact.tar --exclude=.git --exclude=.github
 
       - name: Upload
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          path: ./build
+          name: github-pages
+          path: ./artifact.tar
+          retention-days: "1"
+          if-no-files-found: error
           
   deploy:
     needs: build
