@@ -17,11 +17,10 @@ default_generator = [
 parser = argparse.ArgumentParser(description="Website Builder")
 
 parser.add_argument("--pages", "-p", default=["./pages"], action="append", metavar="dir", help="The root directory of all pages")
-parser.add_argument("--language", default=[], action="append", metavar="lang", help="Which languages should be exported. If a document does not exist in a given language, a blank document with an error message and a link to the english version is generated instead.")
+parser.add_argument("--language", default=["en"], action="append", metavar="lang", help="Which languages should be exported. If a document does not exist in a given language, a blank document with an error message and a link to the english version is generated instead.")
 parser.add_argument("--static", "-s", default=[["./static", "./static"]], nargs=2, metavar=("static", 'dest'), action="append", help="Add static resources to the website")
 parser.add_argument("--out", "-o", default="./build", metavar="build", action="store", help="Where should the final static site be placed")
 parser.add_argument("--generator", "-g", nargs=2, metavar=("extension", "script"), action="append", default=default_generator, help="How should files of a certain extension be compiled into the website. The second argument should be a script or command-line")
-parser.add_argument("--default-language", default="en", metavar="default_language", help="The default language the website is displayed in", action="store")
 
 args = parser.parse_args(sys.argv[1:])
 
@@ -34,26 +33,16 @@ for i in args.pages:
             matcher = split[-1]
             lang = split[-2]
 
-            if lang in args.language or lang == args.default_language:
+            if lang in args.language:
                 script = next((x for x in args.generator if x[0] == split[-1]), None)
 
                 if not script:
                     print("No matcher defined for", split[-1], "- Skipping")
                     continue
-
-                if lang == args.default_language:
-                    language_dir = os.path.join(args.out, Path(path).relative_to(os.path.abspath(i)).parent, '.'.join(split[:-2] + ['html']))
-                else:
-                    language_dir = os.path.join(args.out, lang, Path(path).relative_to(os.path.abspath(i)).parent, '.'.join(split[:-2] + ['html']))
-                    
-                out = os.path.abspath(language_dir)
+                
+                out = os.path.abspath(os.path.join(args.out, lang, Path(path).relative_to(os.path.abspath(i)).parent, '.'.join(split[:-2] + ['html'])))
                 proc = subprocess.run([os.path.abspath(script[1]), '--source', path, '--out', out, '--build', os.path.abspath(args.out)])
                 codes.append(proc.returncode)
-                
-os.symlink(
-    os.path.abspath(os.path.join(args.out, Path(path).relative_to(os.path.abspath(i)).parent)),
-    os.path.abspath(os.path.join(args.out, lang, Path(path).relative_to(os.path.abspath(i)).parent))
-)
 
 for i in args.static:
     root_src_dir = os.path.abspath(i[0])

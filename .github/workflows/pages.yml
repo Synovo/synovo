@@ -21,10 +21,14 @@ jobs:
           
       - name: Setup Build Directory
         run: |
-          mkdir -p ./build/de
+          mkdir -p ./build/de ./build/en
 
       - name: Build
         run: python3 build.py --language de
+        
+      - name: Symlink english files
+        run: |
+          ls build/en | xargs -I {} ln -s build/en/{} build/
 
       - name: Upload
         uses: actions/upload-pages-artifact@v2
