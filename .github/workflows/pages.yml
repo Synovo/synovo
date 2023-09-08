@@ -21,7 +21,7 @@ jobs:
           
       - name: Setup Build Directory
         run: |
-          mkdir -p ./build/en ./build/de
+          mkdir -p ./build/de
 
       - name: Build
         run: python3 build.py --language de
