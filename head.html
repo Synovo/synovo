@@ -6,15 +6,3 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&family=Rasa:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
-<script>
-    window.addEventListener('load', function() {
-        let refresh;
-        setInterval(refresh = () => fetch('https://bing.biturl.top/?resolution=1920&image=random&format=json')
-            .then(res => res.json())
-            .then(json => document.body.style.backgroundImage = `url('${json.url}')`)
-            .then(res => console.log('Updated Background', res)), 3_600_000);
-            
-        refresh();
-    });
-</script>

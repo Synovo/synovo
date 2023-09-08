@@ -21,14 +21,6 @@
     background: var(--colour-background);
 }
 
-body {
-    background: url('/static/img/tübingen.jpg');
-    background: url('https://bing.biturl.top/?resolution=1920&image=random&format=image');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
 #root {
     min-width: 100%;
     min-height: 100vh;
@@ -78,41 +70,6 @@ body {
     grid-template-columns: subgrid;
     
     grid-template-areas: 'header' 'overview' 'socials';
-    
-    background: var(--colour-background);
-    opacity: 45%;
-    
-    transition-duration: 0.4s;
-    transition-property: opacity, background;
-    
-    filter: brightness(90%);
-}
-
-#nav.collapsed {
-/*     transform: translateX(calc(0 - 100% - 36px)); */
-}
-
-@keyframes appearLeft {
-    0% {
-        top: var(--dim-layout-small);
-        left: calc(0 - var(--dim-layout-small));
-    }
-    
-    100% {
-        top: var(--dim-layout-small);
-        left: calc(0 + var(--dim-layout-small));
-    }
-}
-
-#nav.collapsed #menu-collapse {
-    position: fixed;
-    animation: appearLeft 0.3s;
-    animation-fill-mode: forwards;
-}
-
-#nav:hover {
-    opacity: 95%;
-    background: var(--colour-black-dark);
 }
 
 #nav div#overview {
