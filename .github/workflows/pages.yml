@@ -14,14 +14,14 @@ jobs:
           
       - name: Setup pandoc
         uses: nikeee/setup-pandoc@v1
+    
+      - name: Clear build directory
+        run: |
+          find build/* | xargs rm -rf;
           
       - name: Setup Build Directory
         run: |
           mkdir -p ./build/en ./build/de
-    
-      - name: Clear build directory
-        run: |
-          find build/* | xargs rm -rf
 
       - name: Build
         run: python3 build.py --language de
