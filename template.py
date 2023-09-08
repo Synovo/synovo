@@ -5,7 +5,7 @@ def template_file(file, wrapper, env = {}, glob = {}):
     with open(file, 'r') as html:
         data = html.read()
         html.close()
-        return data
+        return template(data, wrapper, env, glob)
 
 def template(data, wrapper, env = {}, glob = {}):
     if isinstance(wrapper, str):
