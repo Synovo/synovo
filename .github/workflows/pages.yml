@@ -28,7 +28,7 @@ jobs:
         
       - name: Redirect english files
         run: |
-          ls build/en | xargs -I {} ./redirect.py /en/{} > ./build/{}
+          ls build/en | xargs -I {} sh -c "./redirect.py /en/{} > ./build/{}"
           
       - name: Bundle
         run: |
