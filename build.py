@@ -40,6 +40,8 @@ for i in args.pages:
             (out, matcher, lang) = get_full_path
                 
             if lang in args.language:
+                os.makedirs(os.path.dirname(out), exist_ok=True)
+                
                 script = next((x for x in args.generator if x[0] == matcher), None)
 
                 if not script:
