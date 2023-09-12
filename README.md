@@ -173,5 +173,5 @@ The following setup can be utilised to make development as straight-forward as p
 
 # Copyright Notice
 
-This website is written and maintained by Synovo GmbH exclusively. It is not open to the public under any circumstances. If you gain access to this code, please contact [Synovo GmbH technical administration](mailto:admin@synovo.com) immediately. 
+This website is written and maintained by Synovo GmbH exclusively. Its source code is not open to the public under any circumstances. If you gain access to this code, please contact [Synovo GmbH technical administration](mailto:admin@synovo.com) immediately. 
 
