@@ -164,4 +164,14 @@ The following setup can be utilised to make development as straight-forward as p
     * Using tools like `entr`, the contents of the website can be rebuilt on file changes.
 
 4. Deploy a management portal
-    * To make publication more straight-forward, a dedicated development-only page can be exposed to authors to push the contents of the website to GitHub, where it is built, and deployed to the host. This might be achieved with a direct SSH connection to the VPS which issues commands directly from the interface, including combinations of `git commit` and `git push`, restarting services, or monitoring builds and deployments. 
+    * To make publication more straight-forward, a dedicated development-only page can be exposed to authors to push the contents of the website to GitHub, where it is built, and deployed to the host. This might be achieved with a direct SSH connection to the VPS which issues commands directly from the interface, including combinations of `git commit` and `git push`, restarting services, or monitoring builds and deployments.    
+
+5. It's possible to write a GUI webpage builder
+    A long-term goal is to simplify the web-curation process as much as possible. This might include graphical webpage editors. 
+    
+---
+
+# Copyright Notice
+
+This website is written and maintained by Synovo GmbH exclusively. It is not open to the public under any circumstances. If you gain access to this code, please contact [mailto:admin@synovo.com](Synovo GmbH technical administration) immediately. 
+
