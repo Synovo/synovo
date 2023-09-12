@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 import argparse
 import subprocess
-
+import template_utils
 
 default_generator = [
     ["docx", "./docx.py"],
@@ -27,22 +27,34 @@ args = parser.parse_args(sys.argv[1:])
 
 codes = []
 
+build_dir = os.path.abspath(args.out)
+
 for i in args.pages:
     for root, dirs, files in os.walk(os.path.abspath(i)):
-        for file, path in [(file, os.path.join(root, file)) for file in files]:
-            split = file.split('.')
-            matcher = split[-1]
-            lang = split[-2]
-
+        for current_file in [os.path.join(root, file) for file in files]:
+            get_full_path = template_utils.map_source_to_dest(os.path.abspath(i), build_dir, current_file);
+            
+            if not get_full_path:
+                continue
+            
+            (out, matcher, lang) = get_full_path
+                
             if lang in args.language:
-                script = next((x for x in args.generator if x[0] == split[-1]), None)
+                script = next((x for x in args.generator if x[0] == matcher), None)
 
                 if not script:
-                    print("No matcher defined for", split[-1], "- Skipping")
+                    print("No matcher defined for", matcher, "- Skipping", file=sys.stderr)
                     continue
                 
-                out = os.path.abspath(os.path.join(args.out, lang, Path(path).relative_to(os.path.abspath(i)).parent, '.'.join(split[:-2] + ['html'])))
-                proc = subprocess.run([os.path.abspath(script[1]), '--source', path, '--out', out, '--build', os.path.abspath(args.out)])
+                proc = subprocess.run([
+                    os.path.abspath(script[1]), 
+                    '--source', current_file, 
+                    '--out', out, 
+                    '--build', build_dir, 
+                    '--root', os.path.abspath(i), 
+                    '--languages', ','.join(args.language),
+                    '--lang', lang
+                ])
                 codes.append(proc.returncode)
 
 for i in args.static:
@@ -62,7 +74,7 @@ for i in args.static:
 
 
 if len([i for i in codes if not i == 0]):
-    print("A process didn't exist properly")
+    print("A process didn't exist properly", file=sys.stderr)
     sys.exit(1)
 else:
     print("Rebuilt")
