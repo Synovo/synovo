@@ -30,10 +30,6 @@ jobs:
         run: |
           ls build/en | xargs -I {} sh -c "./redirect.py /en/{} > ./build/{}"
           
-      - name: Bundle
-        run: |
-          tar --dereference --hard-dereference --directory build -cvf ./artifact.tar --exclude=.git --exclude=.github .
-      
       - name: Add key
         env: 
           ALLINKL: ${{ secrets.AllInkl }}
@@ -41,4 +37,4 @@ jobs:
     
       - name: Deploy
         run: |
-          scp -Cr build/ ssh-w012428e@w012428e.kasserver.com:/www/htdocs/w012428e/jasc-autmatic-website/
+          scp -Cr build/ ${{ secrets.destination }}
