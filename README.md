@@ -169,9 +169,22 @@ The following setup can be utilised to make development as straight-forward as p
 5. It's possible to write a GUI webpage builder
     A long-term goal is to simplify the web-curation process as much as possible. This might include graphical webpage editors. 
     
+## Deployment
+
+The deployment process is as-of-present simply an SCP step. However due to the strict requirement for cryptographic integrity, several steps are required to keep the system running consistently. Consequently, there are four secrets registered on the Action which allow the script to push the bundled source to the corresponding destination. 
+
+The four secrets are:
+
+* `sshprivkey`: Contains the PAM-encoded private key SSH can use to authenticate itself with the host
+* `host`: The hostname or IP of the destination server
+* `user`: Host's username used to authenticate
+* `destination`: Where the final build resources are copied to
+
+These should be updated regularly, most likely with identical information. If a deploy fails, it's very likely due to a misconfiguration of any of the four values listed above. 
+
 ---
 
 # Copyright Notice
 
-This website is written and maintained by Synovo GmbH exclusively. Its source code is not open to the public under any circumstances. If you gain access to this code, please contact [Synovo GmbH technical administration](mailto:admin@synovo.com) immediately. 
+This website is written and maintained by Synovo GmbH exclusively. Its source code is not open to the public under any circumstances. If you gain access to this code or would like to use it yourself, please contact [Synovo GmbH technical administration](mailto:admin@synovo.com). 
 
