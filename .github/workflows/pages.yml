@@ -33,7 +33,9 @@ jobs:
       - name: Add key
         env: 
           ALLINKL: ${{ secrets.AllInkl }}
-        run: ssh-add - <<< "$ALLINKL"
+        run: |
+          eval `ssh-agent`
+          ssh-add - <<< "$ALLINKL"
     
       - name: Deploy
         run: |
