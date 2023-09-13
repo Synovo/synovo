@@ -11,7 +11,7 @@ import template_utils
 default_generator = [
     ["docx", "./docx.py"],
     ["md", "./md.py"],
-    ["html", "./html.py"]
+    ["html", "./markup.py"]
 ]
 
 
