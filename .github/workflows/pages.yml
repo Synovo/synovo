@@ -30,13 +30,10 @@ jobs:
         run: |
           ls build/en | xargs -I {} sh -c "./redirect.py /en/{} > ./build/{}"
           
-      - name: Add key
+      - name: Deploy
         env: 
           ALLINKL: ${{ secrets.AllInkl }}
-        run: |
+        run: |        
           eval `ssh-agent`
           ssh-add - <<< "$ALLINKL"
-    
-      - name: Deploy
-        run: |
-          scp -Cr build/ ${{ secrets.destination }}
+          scp -Cr $PWD/build/ ${{ secrets.destination }}
