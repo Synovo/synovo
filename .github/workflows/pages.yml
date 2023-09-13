@@ -36,4 +36,5 @@ jobs:
           ssh-keyscan ${{ secrets.host }} >> ~/.ssh/known_hosts
           eval `ssh-agent`
           ssh-add - <<< "${{ secrets.sshprivkey }}"
-          scp -Cr $PWD/build/ ${{ secrets.destination }}
+          ssh "${{ secrets.user }}@${{ secrets.host }}" "rm -rf ${{ secrets.destination }}/*"
+          scp -Cr $PWD/build/* "${{ secrets.user }}@${{ secrets.host }}:${{ secrets.destination }}"
