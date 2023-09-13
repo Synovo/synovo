@@ -32,6 +32,8 @@ jobs:
           
       - name: Deploy
         run: |        
+          mkdir -p ~/.ssh/
+          ssh-keyscan ${{ secrets.host }} >> ~/.ssh/known_hosts
           eval `ssh-agent`
-          ssh-add - <<< "${{ secrets.allinkl }}"
-          scp -Cr $PWD/build/* ${{ secrets.destination }}
+          ssh-add - <<< "${{ secrets.sshprivkey }}"
+          scp -Cr $PWD/build/ ${{ secrets.destination }}
