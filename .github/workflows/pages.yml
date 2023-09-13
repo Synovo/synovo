@@ -33,29 +33,12 @@ jobs:
       - name: Bundle
         run: |
           tar --dereference --hard-dereference --directory build -cvf ./artifact.tar --exclude=.git --exclude=.github .
-
-      - name: Upload
-        uses: actions/upload-artifact@v3
-        with:
-          name: github-pages
-          path: ./artifact.tar
-          retention-days: "1"
-          if-no-files-found: error
-          
-  deploy:
-    needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-
+      
+      - name: Add key
+        env: 
+          ALLINKL: ${{ secrets.AllInkl }}
+        run: ssh-add - <<< "$ALLINKL"
+    
+      - name: Deploy
+        run: |
+          scp -Cr build/ ssh-w012428e@w012428e.kasserver.com:/www/htdocs/w012428e/jasc-autmatic-website/
