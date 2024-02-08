@@ -60,7 +60,8 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    
+    height: 100%;
+    align-items: center;
 }
 
 /* --- Menus --- */
@@ -167,7 +168,12 @@
 
 #nav #langswitch {
     grid-area: langswitch;
+
+    /* padding: auto; */
     padding: var(--dim-layout-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #nav #langswitch a {
