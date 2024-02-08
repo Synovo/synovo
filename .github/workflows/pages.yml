@@ -30,11 +30,11 @@ jobs:
         run: |
           ls build/en | xargs -I {} sh -c "./redirect.py /en/{} > ./build/{}"
           
-      - name: Deploy
-        run: |        
-          mkdir -p ~/.ssh/
-          ssh-keyscan ${{ secrets.host }} >> ~/.ssh/known_hosts
-          eval `ssh-agent`
-          ssh-add - <<< "${{ secrets.sshprivkey }}"
-          ssh "${{ secrets.user }}@${{ secrets.host }}" "rm -rf ${{ secrets.destination }}/*"
-          scp -Cr $PWD/build/* "${{ secrets.user }}@${{ secrets.host }}:${{ secrets.destination }}"
+      # - name: Deploy
+      #   run: |        
+      #     mkdir -p ~/.ssh/
+      #     ssh-keyscan ${{ secrets.host }} >> ~/.ssh/known_hosts
+      #     eval `ssh-agent`
+      #     ssh-add - <<< "${{ secrets.sshprivkey }}"
+      #     ssh "${{ secrets.user }}@${{ secrets.host }}" "rm -rf ${{ secrets.destination }}/*"
+      #     scp -Cr $PWD/build/* "${{ secrets.user }}@${{ secrets.host }}:${{ secrets.destination }}"
