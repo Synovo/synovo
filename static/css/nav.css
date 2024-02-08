@@ -1,0 +1,195 @@
+/* --- Header --- */
+
+#nav {
+    grid-area: header;
+    
+    max-height: var(--dim-element-medium);
+    
+    display: grid;
+    grid-template-rows: var(--dim-element-small) 1fr;
+    grid-template-columns: auto 1fr auto;
+    
+    transition: background 0.3s;
+    
+    z-index: 105;
+
+    align-items: center;
+    
+    grid-template-areas: 'logo links langswitch' 'more-links more-links more-links';
+}
+
+#root:not(.large-header) #nav {
+    position: sticky;
+    top: 0;
+    background: var(--colour-background);
+    border-bottom: 1px solid var(--colour-grey-dark);
+}
+
+/*#root.large-header:hover {*/
+/*    backdrop-filter: blur(var(--dim-element-medium));*/
+/*}*/
+
+#root.large-header #nav {
+    background: var(--background-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    padding: var(--dim-layout-large);
+    align-items: start;
+
+    max-height: var(--dim-element-huge);
+    --colour-foreground: var(--colour-white-light);
+}
+
+#nav #logo {
+    grid-area: logo;
+    width: 100%;
+    color: var(--colour-accent);
+    padding: var(--dim-layout-medium);
+}
+
+#nav #logo svg {
+    max-width: var(--dim-element-medium);
+    width: 100%;
+    color: inherit;
+}
+
+#nav #links {
+    grid-area: links;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+}
+
+/* --- Menus --- */
+
+#root #nav .menu * {
+    color: var(--colour-black-dark);
+}
+
+#root #nav .super-menu {
+    min-width: var(--dim-element-medium);
+    padding: 0 var(--dim-layout-large);
+    position: relative;
+    font-weight: bold;
+    font-size: var(--dim-font-huge);
+}
+
+#nav .menu:not(.super-menu) {
+    position: absolute;
+    font-weight: normal;
+    font-size: var(--dim-font-medium);
+    top: 100%;
+    right: 100%;
+    display: block;
+}
+
+#nav .menu-item.super-menu > .menu {
+    right: 0;
+}
+
+#nav .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    display: block;
+    position: relative;
+
+    width: fit-content;
+    
+    background: var(--colour-white-light);
+    min-width: var(--dim-element-large);
+
+    padding: var(--dim-layout-medium) 0;
+
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 10%);
+
+    z-index: 100;
+}
+
+#nav .menu .menu-item {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0 var(--dim-layout-medium);
+    width: 100%;
+}
+
+#nav .menu .menu-item:hover {
+    background: var(--colour-white);
+}
+
+#nav .menu a.menu-item {
+    display: block;
+}
+
+#nav .menu .menu-item, #nav .menu .menu-item > label.fill {
+    width: 100%;
+    color: var(--colour-black-dark);
+
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+
+    line-height: 2em;
+    
+    text-decoration: none;
+}
+
+#nav .menu .menu-item > label.fill {
+    flex: 1;
+    display: block;
+}
+
+.menu.expand-on-hover {
+    opacity: 0;
+    display: none;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.menu-item:hover > .menu.expand-on-hover, 
+.menu-item:focus > .menu.expand-on-hover, 
+.menu-item:focus-within > .menu.expand-on-hover, 
+.menu-item:active > .menu.expand-on-hover, 
+.menu.expand-on-hover:hover
+.menu.expand-on-hover:focus
+.menu.expand-on-hover:focus-within
+.menu.expand-on-hover:active {
+    opacity: 1;
+    display: block;
+    pointer-events: all;
+}
+
+/* --- Langswitch --- */
+
+#nav #langswitch {
+    grid-area: langswitch;
+    padding: var(--dim-layout-medium);
+}
+
+#nav #langswitch a {
+    font-size: var(--dim-font-small);
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    line-height: var(--nav-item-size);
+    text-transform: uppercase;
+    width: var(--nav-item-size);
+    height: var(--nav-item-size);
+    border-radius: calc(var(--nav-item-size) / 2);
+    background: var(--colour-foreground);
+    
+    color: var(--colour-black-dark);
+    
+    mix-blend-mode: screen;
+}
+
+#root:not(.large-header) #nav #langswitch a {
+    mix-blend-mode: initial;
+    background: var(--colour-background);
+    color: var(--colour-foreground);
+}

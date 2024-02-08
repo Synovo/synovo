@@ -1,20 +1,13 @@
-<section id="root">
+<section id="root" <?py('class="large-header"' if final_path.endswith('/index.html') else '')?>>
 	<section id="nav">
-		<div id="options">
-			<div id="menu-collapse" class="ri-arrow-left-s-fill"></div>
-			<a href="<?py(('/de' if final_path.startswith('/en') else '/en') + final_path[3:])?>" class="ri-global-line"></a>
-		</div>
-		<div id="overview">
-			<div id="logo">
-			
-			</div>
-			<nav id="main">
-				<?py(mod('nav').get_nav(root, lang, build, languages))?>
-			</nav>
-		</div>
-			
-		<div id="socials">
-		
+		<a href="<?py('/en' if final_path.startswith('/en') else '/de')?>" id="logo">
+			<?py(include('./static/img/synovo.svg'))?>
+		</a>
+		<nav id="links">
+			<?py(mod('nav').get_nav(root, lang, build, languages))?>
+		</nav>
+		<div id="langswitch">
+			<a href="<?py(('/de' if final_path.startswith('/en') else '/en') + final_path[3:])?>"><?py('en' if final_path.startswith('/en') else 'de')?></a>
 		</div>
 	</section>
 	
@@ -24,12 +17,20 @@
 	</section>
 	
 	<?py(include('./footer.html'))?>
-</section>
+	
+<!--	<script>-->
+<!--		window.addEventListener('load', function() {-->
+<!--			const nav = document.body.querySelector("#root");-->
+<!--			const nav_size = getComputedStyle(document.body).getPropertyValue("&#45;&#45;dim-element-small").replace(/px$/, '') * 1;-->
 
-<script>
-	window.addEventListener('load', function() {
-		document.querySelector('#menu-collapse').addEventListener('click', function() {
-			document.querySelector('#nav').classList.toggle('collapsed');
-		});
-	});
-</script>
+<!--			if (nav.classList.contains('large-header'))-->
+<!--				document.addEventListener('scroll', function(e) {-->
+<!--					if (this?.scrollingElement?.scrollTop > 5) {-->
+<!--						nav.classList.remove('large-header');-->
+<!--					} else {-->
+<!--						nav.classList.add('large-header');-->
+<!--					}-->
+<!--				});-->
+<!--		})-->
+<!--	</script>-->
+</section>

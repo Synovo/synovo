@@ -59,6 +59,8 @@ for i in args.pages:
                 ])
                 codes.append(proc.returncode)
 
+                print("Built '{}': {}".format(current_file, 'Success' if proc.returncode==0 else 'Failure'))
+
 for i in args.static:
     root_src_dir = os.path.abspath(i[0])
     root_dst_dir = os.path.abspath(os.path.join(args.out, i[1]))

@@ -33,3 +33,11 @@ article h4 {
 article p {
     margin: var(--dim-layout-large) 0;
 }
+
+article blockquote {
+    backdrop-filter: brightness(75%) blur(var(--dim-element-medium));
+    border-radius: var(--dim-layout-small);
+    border-left: 3px solid var(--colour-foreground);
+    padding: var(--dim-layout-small) var(--dim-layout-large);
+    font-size: var(--dim-font-small);
+}

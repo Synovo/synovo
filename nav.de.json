@@ -1,0 +1,10 @@
+{
+    "Firma": {
+        "Über Uns": "/company/about.html",
+        "Neuigkeiten": "/company/news.html",
+        "Impressum": "/company/impressum.html"
+    },
+    "Histologie": {
+        "Unsere Projekte": "/histology/projects.html"
+    }
+}

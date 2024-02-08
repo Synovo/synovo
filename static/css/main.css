@@ -1,6 +1,8 @@
 @import url('./theme.css');
 @import url('./widgets.css');
 @import url('./typography.css');
+@import url('./mobile.css');
+@import url('./nav.css');
 
 *, :root {
     margin: 0;
@@ -17,7 +19,7 @@
     --box-shadow-tiny: 0 0 2px rgba(55, 55, 55, 15%);
 }
 
-:root {
+:root, #root, body {
     background: var(--colour-background);
 }
 
@@ -27,118 +29,159 @@
     
     display: grid;
     
-    background-color: rgba(0, 0, 0, 10%);
+    grid-template-rows: var(--dim-element-medium) 1fr var(--dim-element-small) auto auto;
+    grid-template-columns: var(--dim-element-small) 1fr minmax(auto, 1200px) 1fr var(--dim-element-small);
     
-    grid-template-rows: var(--dim-element-large) auto var(--dim-element-small) auto;
-    grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
-    
-    grid-template-areas: 'left_padding header right-padding' 'left_padding content right_paddng' 'left_padding content right_padding' 'footer footer footer';
+    grid-template-areas: 
+        'l_pad header header header r_pad' 
+        'l_pad left_padding content right_paddng r_pad' 
+        'l_pad left_padding content right_padding r_pad' 
+        'l_pad footer footer footer r_pad'
+        'l_pad footer footer footer r_pad';
+}
+
+#root.large-header {
+    grid-template-rows: var(--dim-element-huge) 1fr var(--dim-element-small) auto auto;
 }
 
 #root #content {
     grid-area: content;
-    backdrop-filter: blur(128px) brightness(45%);
     padding: var(--dim-layout-large);
-    margin: var(--dim-layout-large);
-    border-radius: var(--dim-layout-medium);
-    border: 1px solid var(--colour-black);
+    
+    background: var(--colour-background);
+    opacity: 95%;
     
     overflow-x: hidden;
 }
 
+/* Misc */
+
+#partners-container {
+    background: var(--colour-white);
+    padding: var(--dim-layout-huge);
+}
+
+#partners {
+    display: flex;
+    flex-direction: row;
+    justify-content: center ;
+    gap: var(--dim-element-small);
+    flex-wrap: wrap;
+}
+
+#partners img {
+    max-height: var(--dim-element-small);
+    min-height: var(--dim-element-small);
+}
+
+/* News */
+
+#news-container a.news-article {
+    text-decoration: none;
+    display: block;
+    position: relative;
+    min-height: var(--dim-element-gigantic);
+    overflow: hidden;
+}
+
+#news-container .split {
+    gap: var(--dim-layout-medium);
+}
+
+#news-container .news-article img {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#news-container .news-article img ~ div {
+    --margin: var(--dim-layout-large);
+
+    width: calc(100% - 2 * var(--margin));
+    top: calc(100% - 2 * var(--margin));
+    transform: translateY(-100%);
+    z-index: 2;
+    padding: var(--margin);
+    color: var(--colour-foreground);
+    background: var(--colour-background);
+    margin: var(--margin);
+    border-radius: 7px;
+    /* backdrop-filter: blur(128px) brightness(75%); */
+}
+
+/* Footer */
+
 #root #footer {
     grid-area: footer;
     
+    position: sticky;
+    top: 0;
+    
     background: var(--colour-background);
+    background-image: url(/static/img/backdrop.svg);
+    background-size: cover;
+    background-position: center;
     
     display: grid;
     grid-template-columns: subgrid;
     grid-template-rows: subgrid;
+    grid-template-areas: 'left links right' 'left copyright right';
     
-    grid-template-areas: 'left copyright right';    
     padding: var(--dim-layout-large);
+}
+
+#root #footer, #root #footer #copyright {
+    border-top: 1px solid var(--colour-foreground);
+}
+
+#root #footer > * {
+    padding: var(--dim-layout-huge);
+}
+
+#footer #footer-links {
+    grid-area: links;
+}
+
+#footer #footer-links a {
+    display: block;
+    line-height: 1.5;
+    text-decoration: none;
+    font-size: var(--dim-font-small);
+}
+
+#footer #footer-links ul {
+    padding: var(--dim-layout-medium);
+}
+
+#footer #footer-links li {
+    list-style-type: none;
+    padding-left: var(--dim-layout-medium);
+    padding: var(--dim-layout-small) var(--dim-layout-medium);
+}
+
+#footer #socials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--dim-layout-medium);
+}
+
+#footer #socials a {
+    text-decoration: none;
+    font-size: var(--dim-font-gigantic);
 }
 
 #footer #copyright {
     grid-area: copyright;
-}
-
-#nav {
-    grid-area: left_padding;
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-template-columns: subgrid;
-    
-    grid-template-areas: 'header' 'overview' 'socials';
-}
-
-#nav div#overview {
-    position: sticky;
-    grid-area: overview;
-}
-
-#nav div#socials, #nav div#options {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    gap: var(--dim-layout-medium);
-
-    font-size: var(--dim-font-gigantic);
-    
-    text-decoration: none;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#nav :is(div#socials, div#options) a {
-    text-decoration: none;
-    transition: filter 0.3s;
-}
-
-#nav :is(div#socials, div#options) a:hover {
-    filter: brightness(150%);
-}
-
-#nav div#socials { grid-area: socials; }
-#nav div#options { grid-area: header; }
-
-#nav #logo {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: var(--nav-item-size);
-    
-}
-
-#nav #logo img {
-    border-radius: 512px;
-}
-
-#nav nav#main {
-    display: grid;
-    grid-auto-rows: var(--nav-item-size);
-    padding: var(--dim-layout-medium);
-}
-
-#nav nav#main .indented {
-    padding-left: var(--nav-item-size);
-    
-    display: grid;
-    grid-auto-rows: var(--nav-item-size);
-}
-
-#nav a.nav-link {
-    text-decoration: none;
-    text-align: left;
-    font-weight: bold;
-    font-size: var(--dim-font-normal);
-    line-height: var(--nav-item-size);
-
-    color: var(--colour-foreground);
-    border-radius: 4px;
-    padding-left: 4px;
-    transition: padding-left 0.2s;
-}
-
-#nav a.nav-link:hover {
-    padding-left: var(--dim-layout-large);
+#footer #copyright a {
+    font-size: var(--dim-font-small);
 }

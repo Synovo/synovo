@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 def include(file):
-    with open(file, 'r') as file:
+    with open(os.path.abspath(file), 'r') as file:
         return file.read()
 
 def map_source_to_dest(page_root, build_dir, full_path):

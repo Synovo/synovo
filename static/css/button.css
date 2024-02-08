@@ -4,12 +4,14 @@ button, .button {
     --colour-3: var(--colour-grey-dark);
     --colour-4: var(--colour-black-light);
     
-    background: linear-gradient(var(--colour-1), var(--colour-2));
-    border: 1px solid var(--colour-3);
+    display: block;
+    
+    background: var(--colour-1);
     border-radius: var(--dim-layout-tiny);
-    box-shadow: var(--box-shadow-tiny);
+    box-shadow: var(--box-shadow-medium);
     color: var(--colour-4);
     text-decoration: none;
+    cursor: pointer;
     
     min-width: var(--dim-element-medium);
     
@@ -20,8 +22,7 @@ button, .button {
 }
 
 .button:active {
-    background: linear-gradient(var(--colour-2), var(--colour-1));
-    border: 1px solid var(--colour-3);
+    background: var(--colour-2);
     filter: brightness(95%);
 }
 

@@ -12,13 +12,13 @@ Notably the root of the source tree contains sevaral important files which allow
 
 ### Scripts
 
-| Script | Function |
-|---|---|
-| `build.py` | This is the entrypoint to the build system. It compiles and bundles everything into a final packageable bundle which can be deployed to GitHub Pages or any other static-filehost. By invoking this script, you are building the site from beginning to end |
-| `template.py`, `template_utils.py` | These files provide the ability to wrap the content of each page into a uniform frame, allowing for semi-dynamic[^1] content. |
-| `docx.py`, `md.py`, `html.py` | These represesent the various supported filetypes which the build script knows how to compile. They follow a common API, and are invoked as subprocesses, allowing for parallelisation, and graceful failure-handling |
-| `redirect.py` | This file represents the filetype for all symbolic links. It maps the link to its destination and returns a page which contains a client-side redirect. |
-| `template.html` | Contains the skeleton of each returned page. It includes other template-resources, such as `head.html`, (The contents of the `<head>` tag), or the `frame.html` (whose job is to display each templated page in a friendly manner, i.e. populating the non-content areas of the page) or the `footer.html` (which contains links to various resources around the site, as well as important legal information). |
+| Script                             | Function                                                                                                                                                                                                                                                                                                                                                                                                        |
+|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `build.py`                         | This is the entrypoint to the build system. It compiles and bundles everything into a final packageable bundle which can be deployed to GitHub Pages or any other static-filehost. By invoking this script, you are building the site from beginning to end                                                                                                                                                     |
+| `template.py`, `template_utils.py` | These files provide the ability to wrap the content of each page into a uniform frame, allowing for semi-dynamic[^1] content.                                                                                                                                                                                                                                                                                   |
+| `docx.py`, `md.py`, `html.py`      | These represesent the various supported filetypes which the build script knows how to compile. They follow a common API, and are invoked as subprocesses, allowing for parallelisation, and graceful failure-handling                                                                                                                                                                                           |
+| `redirect.py`                      | This file represents the filetype for all symbolic links. It maps the link to its destination and returns a page which contains a client-side redirect.                                                                                                                                                                                                                                                         |
+| `template.html`                    | Contains the skeleton of each returned page. It includes other template-resources, such as `head.html`, (The contents of the `<head>` tag), or the `frame.html` (whose job is to display each templated page in a friendly manner, i.e. populating the non-content areas of the page) or the `footer.html` (which contains links to various resources around the site, as well as important legal information). |
 
 ### Pages
 
@@ -79,7 +79,7 @@ In the future, it's possible that pages become disorganised, by things like inco
 Occasionally, Markdown documents can be formatted to conform with standards guidelines, such as line-lengths, table syntax and consistent bold-italic annotations etc.
 
 ### Guides to good CSSing
-CSS is virtually impossible to write cleanly or elegantly. Therefore to make maintaining it as straight-forward as possible, we ask maintainers to follow a few certain rules:
+CSS is virtually impossible to write cleanly or elegantly. Therefore, to make maintaining it as straight-forward as possible, we ask maintainers to follow a few certain rules:
 
 1. Try to reuse styles. 
     Elements tend to be classifiable into various widget-like structures. Reuse these as much as possible. 

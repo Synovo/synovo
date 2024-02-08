@@ -1,3 +1,67 @@
-<section>
-
+<section class="margin-medium">
+    <h1>Wir sind Synovo</h1>
+    <div style="color: dodgerblue;" class="split">
+        <figure>
+            <img id="cover-img" src="/static/img/research-light.jpg" alt="Unser Kollege der Dinge mist">
+            <figcaption>Bahnbrechende biologische Forschung betrieben seit 2004</figcaption>
+        </figure>
+        <div class="double padding-large">
+            <p>Wir bei Synovo sind stolz darauf, dass wir in Bereichen, die für die menschliche Gesundheit von entscheidender Bedeutung sind, Grenzen verschieben. Dank unserer Forschung werden zahllose Arzneimittel und Medikamente entdeckt und unzählige Leben gerettet und verbessert.</p>
+            
+            <a href="./company/about.html">Mehr erfahren</a>
+        </div>
+    </div>
+    
+    <!-- <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const img = document.querySelector("#cover-img");
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            media.addEventListener('change', e => img.src = `/static/img/research-${e.matches ? 'dark' : 'light'}.jpg`);
+            
+            if (media.matches)
+                img.src = "/static/img/research-dark.jpg";
+        });
+    </script> -->
 </section>
+
+<hr />
+
+<section class="margin-medium">
+    <h1>Unsere Partner</h1>
+    
+    <div id="partners">
+        <img src="/static/img/logos/curevac.svg" alt="CureVac"/>
+        <img src="/static/img/logos/airna.svg" alt="AiRNA"/>
+        <img src="/static/img/logos/immatics.svg" alt="Immatics"/>
+        <img src="/static/img/logos/tu-muenchen.svg" alt="TU München"/>
+        <img src="/static/img/logos/elastrin.svg" alt="Elastrin Therapeutics"/>
+        <img src="/static/img/logos/gsk.svg" alt="GSK"/>
+        <img src="/static/img/logos/columbia-university.svg" alt="Columbia University"/>
+        <img src="/static/img/logos/veraxa.svg" alt="Veraxa"/>
+    </div>
+</section>
+
+<hr />
+
+<section class="margin-medium" id="news-container">
+    <?py(include('./include/news.de.html'))?>
+</section>
+
+<hr />
+
+<section class="margin-medium split">
+    <div class="double">
+        <h1>Sie haben einen Plan?</h1>
+        <p>Sprechen Sie uns an!</p>
+        
+        <div class="exaggerated left">
+            <a href="https://outlook.office365.com/owa/calendar/SynovoConsultations@synovo.com/bookings/s/mcRQxbRIAUe1Pvd5O1Pl1A2" target="_blank" class="button primary">Kontaktieren</a>
+        </div>
+    </div>
+    <figure class="card-large">
+        <img alt="Denis Canjuga" src="/static/img/denis-canjuga.jpg"/>
+        <figcaption>Ihrer Ansprechpartner, Denis Canjuga (Platzhalterfoto)</figcaption>
+    </figure>
+</section>
+

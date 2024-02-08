@@ -1,0 +1,28 @@
+{
+    "Company": {
+        "About Us": "/company/about.html",
+        "News": "/company/news.html",
+        "Careers": ""
+    },
+    "Services": {
+        "Disease Models": {
+            "Inflammation": {
+                "CIA": "",
+                "DSS": ""
+            },
+            "CNS": "",
+            "Metabolic": {
+                "Diet Diabetes": "",
+                "EAE": "",
+                "CIA": ""
+            },
+            "PK": ""
+        },
+        "Chemistry Services": {
+            "Shop": ""
+        },
+        "In Vitro": "",
+        "Histology": ""
+    },
+    "Contact": "/contact.html"
+}
