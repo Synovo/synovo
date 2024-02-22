@@ -26,10 +26,18 @@
 } */
 
 :root, #root, body {
-    --transparency: 10%;
     --gradient-angle: 45deg;
 
     background: var(--colour-background);
+    
+    /* animation: orbit 30s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite; */
+}
+
+#root {
+    --transparency: 20%;
+
     background: linear-gradient(
         var(--gradient-angle), 
         rgba(255,230,245,var(--transparency)) 19%, 
@@ -37,10 +45,6 @@
         rgba(241,255,223,var(--transparency)) 84%, 
         rgba(246,243,225,var(--transparency)) 100%
     );
-
-    /* animation: orbit 30s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite; */
 }
 /* 
 @keyframes orbit {
@@ -85,11 +89,6 @@
 }
 
 /* Misc */
-
-#partners-container {
-    background: var(--colour-white);
-    padding: var(--dim-layout-huge);
-}
 
 #partners {
     display: flex;
