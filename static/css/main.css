@@ -19,9 +19,39 @@
     --box-shadow-tiny: 0 0 2px rgba(55, 55, 55, 15%);
 }
 
+/* @property --gradient-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+} */
+
 :root, #root, body {
+    --transparency: 10%;
+    --gradient-angle: 45deg;
+
     background: var(--colour-background);
+    background: linear-gradient(
+        var(--gradient-angle), 
+        rgba(255,230,245,var(--transparency)) 19%, 
+        rgba(227,249,252,var(--transparency)) 46%, 
+        rgba(241,255,223,var(--transparency)) 84%, 
+        rgba(246,243,225,var(--transparency)) 100%
+    );
+
+    /* animation: orbit 30s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite; */
 }
+/* 
+@keyframes orbit {
+    from {
+        --gradient-angle: 0deg;
+    }
+
+    to {
+        --gradient-angle: 360deg;
+    }
+} */
 
 #root {
     min-width: 100%;
@@ -48,7 +78,7 @@
     grid-area: content;
     padding: var(--dim-layout-large);
     
-    background: var(--colour-background);
+    /* background: var(--colour-background); */
     opacity: 95%;
     
     overflow-x: hidden;

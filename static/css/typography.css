@@ -41,3 +41,12 @@ article blockquote {
     padding: var(--dim-layout-small) var(--dim-layout-large);
     font-size: var(--dim-font-small);
 }
+
+.icon {
+    font-family: "remixicon";
+    margin: 0 var(--dim-layout-medium);
+}
+
+.left-align, .left-align * {
+    text-align: left
+}

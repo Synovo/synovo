@@ -8,3 +8,22 @@ article figure figcaption {
 img {
     max-width: 100%;
 }
+
+.card-bordered {
+    border-radius: var(--dim-layout-medium);
+    border: 1px solid var(--colour-foreground-accent);
+    box-shadow: 0 0 var(--dim-element-small) rgba(0, 0, 0, 10%);
+    text-align: left;
+    background: var(--colour-background);
+}
+
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+.card-tiny h1, .card-tiny h2, .card-tiny h3, .card-tiny h4, .card-tiny h5, .card-tiny h6,
+.card-small h1, .card-small h2, .card-small h3, .card-small h4, .card-small h5, .card-small h6,
+.card-medium h1, .card-medium h2, .card-medium h3, .card-medium h4, .card-medium h5, .card-medium h6,
+.card-large h1, .card-large h2, .card-large h3, .card-large h4, .card-large h5, .card-large h6,
+.card-huge h1, .card-huge h2, .card-huge h3, .card-huge h4, .card-huge h5, .card-huge h6,
+.card-gigantic h1, .card-gigantic h2, .card-gigantic h3, .card-gigantic h4, .card-gigantic h5, .card-gigantic h6 {
+    margin: 0;
+    line-height: 1.15em;
+}

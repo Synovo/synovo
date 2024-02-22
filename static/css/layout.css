@@ -7,7 +7,7 @@
 .card-gigantic,
 .split {
     display: block;
-    padding: var(--dim-layout-medium);
+    padding:  var(--dim-layout-medium) var(--dim-layout-huge);
 }
 
 .card-tiny { max-width: var(--dim-element-tiny) }
@@ -21,6 +21,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.wrap-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: var(--dim-layout-large);
+
+    z-index: 2;
+}
+
+.stretch {
+    align-items: stretch;
 }
 
 .split > *:not(.double) {
