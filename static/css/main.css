@@ -85,7 +85,7 @@
     /* background: var(--colour-background); */
     opacity: 95%;
     
-    overflow-x: hidden;
+    overflow-x: visible;
 }
 
 /* Misc */
@@ -213,4 +213,12 @@
 
 #footer #copyright a {
     font-size: var(--dim-font-small);
+}
+
+#ms-bookings {
+    border: none;
+    min-height: var(--dim-element-gigantic);
+    box-shadow: 0 0 var(--dim-element-small) rgba(0, 0, 0, 10%);
+    border-radius: var(--dim-layout-medium);
+    overflow: hidden;
 }

@@ -30,6 +30,7 @@
     flex-wrap: wrap;
 
     gap: var(--dim-layout-large);
+    margin: var(--dim-layout-huge) 0;
 
     z-index: 2;
 }
@@ -69,3 +70,8 @@
 .margin-large { margin: var(--dim-element-large) 0; }
 .margin-huge { margin: var(--dim-element-huge) 0; }
 .margin-gigantic { margin: var(--dim-element-gigantic) 0; }
+
+.spacer {
+    display: flex;
+    flex-direction: row;
+}
